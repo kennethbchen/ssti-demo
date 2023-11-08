@@ -6,10 +6,12 @@ app = Flask(__name__)
 
 
 # flask --debug run
+# python3 app.py
 
 # https://docs.python.org/3/reference/datamodel.html#user-defined-functions
 
 # {{self.__init__.__globals__.__builtins__.open("text.txt").read()}}
+# {{self.__init__.__globals__.__builtins__.open("/etc/passwd").read()}}
 @app.route("/")
 def home():
     name = "World"
@@ -35,3 +37,7 @@ def home():
     """
 
     return render_template_string(template)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+
