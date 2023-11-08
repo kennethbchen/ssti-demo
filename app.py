@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template_string
 from markupsafe import escape
-
+import builtins
 app = Flask(__name__)
 
 
@@ -8,7 +8,10 @@ app = Flask(__name__)
 # flask --debug run
 # python3 app.py
 
+# https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/18-Testing_for_Server_Side_Template_Injection
+# https://hackmd.io/@Chivato/HyWsJ31dI
 # https://docs.python.org/3/reference/datamodel.html#user-defined-functions
+# https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Template%20Injection#jinja2---basic-injection
 
 # {{self.__init__.__globals__.__builtins__.open("text.txt").read()}}
 # {{self.__init__.__globals__.__builtins__.open("/etc/passwd").read()}}
@@ -50,6 +53,7 @@ def home():
     """
 
     return render_template_string(template)
+
 
 @app.route("/fixed")
 def home_fixed():
